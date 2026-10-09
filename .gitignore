@@ -1,0 +1,5 @@
+# Keep local Codex metadata and temporary files out of the repository.
+.codex/
+.agents/
+*.tmp
+~$*
