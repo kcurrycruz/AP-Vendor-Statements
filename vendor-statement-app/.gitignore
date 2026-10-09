@@ -1,0 +1,7 @@
+node_modules/
+dist/vendor/
+.openai/*.local.json
+.sites/
+.sites-runtime/
+*.tar.gz
+*.log

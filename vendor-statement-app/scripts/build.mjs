@@ -1,0 +1,15 @@
+import { cp, mkdir, realpath } from 'node:fs/promises';
+import { resolve } from 'node:path';
+import { createRequire } from 'node:module';
+const root = process.cwd();
+const target = resolve(root, 'dist/vendor');
+await mkdir(target, { recursive: true });
+await cp(resolve(root, 'node_modules/pdfjs-dist/build/pdf.mjs'), resolve(target, 'pdf.mjs'));
+await cp(resolve(root, 'node_modules/pdfjs-dist/build/pdf.worker.mjs'), resolve(target, 'pdf.worker.mjs'));
+await cp(resolve(root, 'node_modules/tesseract.js/dist/tesseract.min.js'), resolve(target, 'tesseract.min.js'));
+await cp(resolve(root, 'node_modules/tesseract.js/dist/worker.min.js'), resolve(target, 'worker.min.js'));
+const require = createRequire(await realpath(resolve(root, 'node_modules/tesseract.js/package.json')));
+const core = resolve(require.resolve('tesseract.js-core/package.json'), '..');
+await cp(core, resolve(target, 'tesseract-core'), { recursive: true });
+await cp(resolve(root, 'node_modules/@tesseract.js-data/eng/4.0.0_best_int/eng.traineddata.gz'), resolve(target, 'eng.traineddata.gz'));
+console.log('Static PDF and OCR assets prepared in dist/vendor.');

@@ -3,3 +3,8 @@
 .agents/
 *.tmp
 ~$*
+tmp/
+.pnpm-store/
+dist/
+node_modules/
+*.tar.gz
