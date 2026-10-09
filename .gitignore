@@ -5,6 +5,6 @@
 ~$*
 tmp/
 .pnpm-store/
-dist/
+/dist/
 node_modules/
 *.tar.gz
